@@ -7,4 +7,5 @@ sealed class Screen(val route: String, val label: String) {
     data object Apps : Screen("apps", "Apps")
     data object Files : Screen("files", "Arquivos")
     data object Logs : Screen("logs", "Logs")
+    data object Audit : Screen("audit", "Auditoria de seguranca")
 }

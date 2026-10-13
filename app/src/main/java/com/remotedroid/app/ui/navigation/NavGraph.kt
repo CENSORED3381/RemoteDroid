@@ -14,6 +14,8 @@ import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.launch
 import com.remotedroid.app.ui.screens.apps.AppsScreen
 import com.remotedroid.app.ui.screens.apps.AppsViewModel
+import com.remotedroid.app.ui.screens.audit.AuditScreen
+import com.remotedroid.app.ui.screens.audit.AuditViewModel
 import com.remotedroid.app.ui.screens.connect.ConnectScreen
 import com.remotedroid.app.ui.screens.connect.ConnectViewModel
 import com.remotedroid.app.ui.screens.deviceinfo.DeviceInfoScreen
@@ -77,6 +79,11 @@ fun RemoteDroidNavGraph(navController: NavHostController = rememberNavController
         composable(Screen.Logs.route) {
             val viewModel: LogsViewModel = viewModel()
             LogsScreen(viewModel)
+        }
+
+        composable(Screen.Audit.route) {
+            val viewModel: AuditViewModel = viewModel()
+            AuditScreen(viewModel)
         }
     }
 }

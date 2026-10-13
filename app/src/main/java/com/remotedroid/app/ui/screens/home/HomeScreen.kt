@@ -68,7 +68,7 @@ fun HomeScreen(
         DashboardItem("Apps", "listar, instalar, remover", Icons.Filled.List, true) { onNavigate("apps") },
         DashboardItem("Arquivos", "explorar, enviar, baixar", Icons.Filled.Folder, true) { onNavigate("files") },
         DashboardItem("Logs", "logcat, bugreport", Icons.Filled.Terminal, true) { onNavigate("logs") },
-        DashboardItem("Auditoria de seguranca", "fase 3 - em breve", Icons.Filled.LockPerson, false) {},
+        DashboardItem("Auditoria de seguranca", "root, permissoes, rede, logs", Icons.Filled.LockPerson, true) { onNavigate("audit") },
         DashboardItem("Espelhamento de tela", "fase 4 - em breve", Icons.Filled.ScreenShare, false) {}
     )
 
