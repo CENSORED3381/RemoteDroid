@@ -25,6 +25,8 @@ import com.remotedroid.app.ui.screens.files.FilesViewModel
 import com.remotedroid.app.ui.screens.home.HomeScreen
 import com.remotedroid.app.ui.screens.logs.LogsScreen
 import com.remotedroid.app.ui.screens.logs.LogsViewModel
+import com.remotedroid.app.ui.screens.mirror.MirrorScreen
+import com.remotedroid.app.ui.screens.mirror.MirrorViewModel
 
 @Composable
 fun RemoteDroidNavGraph(navController: NavHostController = rememberNavController()) {
@@ -84,6 +86,11 @@ fun RemoteDroidNavGraph(navController: NavHostController = rememberNavController
         composable(Screen.Audit.route) {
             val viewModel: AuditViewModel = viewModel()
             AuditScreen(viewModel)
+        }
+
+        composable(Screen.Mirror.route) {
+            val viewModel: MirrorViewModel = viewModel()
+            MirrorScreen(viewModel)
         }
     }
 }

@@ -69,7 +69,7 @@ fun HomeScreen(
         DashboardItem("Arquivos", "explorar, enviar, baixar", Icons.Filled.Folder, true) { onNavigate("files") },
         DashboardItem("Logs", "logcat, bugreport", Icons.Filled.Terminal, true) { onNavigate("logs") },
         DashboardItem("Auditoria de seguranca", "root, permissoes, rede, logs", Icons.Filled.LockPerson, true) { onNavigate("audit") },
-        DashboardItem("Espelhamento de tela", "fase 4 - em breve", Icons.Filled.ScreenShare, false) {}
+        DashboardItem("Espelhamento de tela", "tela ao vivo via MediaCodec", Icons.Filled.ScreenShare, true) { onNavigate("mirror") }
     )
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {

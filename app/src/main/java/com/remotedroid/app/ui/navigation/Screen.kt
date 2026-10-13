@@ -8,4 +8,5 @@ sealed class Screen(val route: String, val label: String) {
     data object Files : Screen("files", "Arquivos")
     data object Logs : Screen("logs", "Logs")
     data object Audit : Screen("audit", "Auditoria de seguranca")
+    data object Mirror : Screen("mirror", "Espelhamento")
 }

@@ -23,6 +23,9 @@ gradle/wrapper/gradle-wrapper.jar
 *.apk
 *.aab
 
+# scrcpy-server.jar e baixado pela tarefa Gradle fetchScrcpyServer (fase 4), nao versionar
+app/src/main/assets/scrcpy-server.jar
+
 # macOS / editores
 .DS_Store
 *.swp

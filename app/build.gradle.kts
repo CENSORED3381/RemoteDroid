@@ -11,8 +11,8 @@ android {
         applicationId = "com.remotedroid.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.3.0"
 
         vectorDrawables { useSupportLibrary = true }
     }
@@ -54,6 +54,33 @@ android {
     }
 }
 
+// Fase 4 (espelhamento de tela): baixa o scrcpy-server oficial (Genymobile/scrcpy,
+// Apache 2.0) e coloca como asset do app, para ser enviado ao aparelho alvo em
+// tempo de execucao. A versao abaixo precisa bater com SCRCPY_SERVER_VERSION em
+// MirrorStreamer.kt (o servidor recusa rodar se a versao informada na linha de
+// comando nao bater com a dele). Precisa de internet durante o build (CI ou local).
+val scrcpyServerVersion = "2.4"
+val scrcpyServerAsset = file("src/main/assets/scrcpy-server.jar")
+
+tasks.register("fetchScrcpyServer") {
+    outputs.file(scrcpyServerAsset)
+    doLast {
+        if (!scrcpyServerAsset.exists() || scrcpyServerAsset.length() == 0L) {
+            scrcpyServerAsset.parentFile.mkdirs()
+            val url = "https://github.com/Genymobile/scrcpy/releases/download/" +
+                "v$scrcpyServerVersion/scrcpy-server-v$scrcpyServerVersion"
+            logger.lifecycle("baixando scrcpy-server v$scrcpyServerVersion de $url")
+            java.net.URI(url).toURL().openStream().use { input ->
+                scrcpyServerAsset.outputStream().use { output -> input.copyTo(output) }
+            }
+        }
+    }
+}
+
+tasks.named("preBuild") {
+    dependsOn("fetchScrcpyServer")
+}
+
 dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
@@ -73,6 +100,9 @@ dependencies {
 
     // Cliente ADB em Kotlin puro (pareamento + shell + sync) - sem precisar do binario adb
     implementation("com.flyfishxu:kadb:2.1.4")
+
+    // Okio: usado para ler os streams brutos do Kadb (fase 4 - espelhamento de tela)
+    implementation("com.squareup.okio:okio:3.9.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 
