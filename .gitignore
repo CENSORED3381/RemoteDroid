@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+app/build/
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Gradle wrapper (jar e gerado localmente, nao versionado)
+gradle/wrapper/gradle-wrapper.jar
+
+# Chaves ADB geradas pelo Kadb/dadb (nunca versionar)
+*.adbkey
+*.adbkey.pub
+
+# Saida de APK
+*.apk
+*.aab
+
+# macOS / editores
+.DS_Store
+*.swp
