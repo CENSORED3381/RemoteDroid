@@ -101,7 +101,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     // Cliente ADB em Kotlin puro (pareamento + shell + sync) - sem precisar do binario adb
-    implementation("com.flyfishxu:kadb:2.1.4")
+    implementation("com.flyfishxu:kadb:2.1.2")
 
     // Okio: usado para ler os streams brutos do Kadb (fase 4 - espelhamento de tela)
     implementation("com.squareup.okio:okio:3.9.0")
