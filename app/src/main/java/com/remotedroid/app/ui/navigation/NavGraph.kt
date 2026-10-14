@@ -27,6 +27,7 @@ import com.remotedroid.app.ui.screens.logs.LogsScreen
 import com.remotedroid.app.ui.screens.logs.LogsViewModel
 import com.remotedroid.app.ui.screens.mirror.MirrorScreen
 import com.remotedroid.app.ui.screens.mirror.MirrorViewModel
+import com.remotedroid.app.ui.screens.splash.SplashScreen
 
 @Composable
 fun RemoteDroidNavGraph(navController: NavHostController = rememberNavController()) {
@@ -34,7 +35,17 @@ fun RemoteDroidNavGraph(navController: NavHostController = rememberNavController
     val scope = rememberCoroutineScope()
     val historyStore = remember(context) { ConnectionHistoryStore(context) }
 
-    NavHost(navController = navController, startDestination = Screen.Connect.route) {
+    NavHost(navController = navController, startDestination = Screen.Splash.route) {
+        composable(Screen.Splash.route) {
+            SplashScreen(
+                onFinished = {
+                    navController.navigate(Screen.Connect.route) {
+                        popUpTo(Screen.Splash.route) { inclusive = true }
+                    }
+                }
+            )
+        }
+
         composable(Screen.Connect.route) {
             val viewModel: ConnectViewModel = viewModel(
                 factory = SimpleViewModelFactory { ConnectViewModel(historyStore) }
