@@ -110,7 +110,7 @@ fun BlinkingDot(color: Color, modifier: Modifier = Modifier) {
         animationSpec = infiniteRepeatable(
             animation = tween(700),
             repeatMode = RepeatMode.Reverse
-        ) as InfiniteRepeatableSpec<Float>,
+        ),
         label = "blinkAlpha"
     )
     Box(
