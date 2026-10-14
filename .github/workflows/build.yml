@@ -43,7 +43,7 @@ jobs:
           yes | "$SDKMANAGER" --update || true
           echo "Pacotes disponiveis contendo '37':"
           "$SDKMANAGER" --list 2>/dev/null | grep -i "37" || true
-          "$SDKMANAGER" "platforms;android-37" "build-tools;36.0.0"
+          "$SDKMANAGER" "platforms;android-37.0" "build-tools;36.0.0"
 
       - name: Build do APK de debug
         run: gradle assembleDebug --no-daemon
