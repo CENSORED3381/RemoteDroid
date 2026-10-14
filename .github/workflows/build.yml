@@ -39,6 +39,10 @@ jobs:
           fi
           echo "Usando sdkmanager em: $SDKMANAGER"
           yes | "$SDKMANAGER" --licenses > /dev/null || true
+          echo "Atualizando o proprio cmdline-tools..."
+          yes | "$SDKMANAGER" --update || true
+          echo "Pacotes disponiveis contendo '37':"
+          "$SDKMANAGER" --list 2>/dev/null | grep -i "37" || true
           "$SDKMANAGER" "platforms;android-37" "build-tools;36.0.0"
 
       - name: Build do APK de debug
