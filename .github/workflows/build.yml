@@ -24,7 +24,12 @@ jobs:
       - name: Configurar Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.7'
+          gradle-version: '9.3.1'
+
+      - name: Garantir SDK Platform 37 e Build-Tools 36
+        run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "platforms;android-37" "build-tools;36.0.0"
 
       - name: Build do APK de debug
         run: gradle assembleDebug --no-daemon
