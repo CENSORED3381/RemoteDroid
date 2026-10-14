@@ -1,3 +1,5 @@
+import java.net.URI
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -70,7 +72,7 @@ tasks.register("fetchScrcpyServer") {
             val url = "https://github.com/Genymobile/scrcpy/releases/download/" +
                 "v$scrcpyServerVersion/scrcpy-server-v$scrcpyServerVersion"
             logger.lifecycle("baixando scrcpy-server v$scrcpyServerVersion de $url")
-            java.net.URI(url).toURL().openStream().use { input ->
+            URI(url).toURL().openStream().use { input ->
                 scrcpyServerAsset.outputStream().use { output -> input.copyTo(output) }
             }
         }
