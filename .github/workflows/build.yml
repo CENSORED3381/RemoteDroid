@@ -28,8 +28,18 @@ jobs:
 
       - name: Garantir SDK Platform 37 e Build-Tools 36
         run: |
-          yes | sdkmanager --licenses > /dev/null || true
-          sdkmanager "platforms;android-37" "build-tools;36.0.0"
+          SDKMANAGER="$(command -v sdkmanager || true)"
+          if [ -z "$SDKMANAGER" ]; then
+            for d in "$ANDROID_HOME"/cmdline-tools/*/bin "$ANDROID_SDK_ROOT"/cmdline-tools/*/bin; do
+              if [ -x "$d/sdkmanager" ]; then
+                SDKMANAGER="$d/sdkmanager"
+                break
+              fi
+            done
+          fi
+          echo "Usando sdkmanager em: $SDKMANAGER"
+          yes | "$SDKMANAGER" --licenses > /dev/null || true
+          "$SDKMANAGER" "platforms;android-37" "build-tools;36.0.0"
 
       - name: Build do APK de debug
         run: gradle assembleDebug --no-daemon
